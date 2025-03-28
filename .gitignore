@@ -1,0 +1,3 @@
+/build
+*.so
+/cython_chess/cython_chess.cpp
