@@ -1,5 +1,9 @@
                 Copyright (C) 2024 Ranuja Pinnaduwage  
-  
+
+  This project is a modification of `python-chess`, which is licensed under the
+GNU General Public License v3. The original `python-chess` project can be
+found at: <https://github.com/niklasf/python-chess>.
+
                     GNU GENERAL PUBLIC LICENSE  
                       Version 3, 29 June 2007  
 
