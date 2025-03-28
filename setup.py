@@ -51,10 +51,9 @@ setup(
     install_requires=[  # List of Python dependencies
         "numpy", 
         "python-chess",
-        "typing",
+        "collections.abc",
         "cython",
         "setuptools",
-        "itertools",        
         # Add any other dependencies your package needs
     ],
     classifiers=[  # Classifiers help categorize your package
