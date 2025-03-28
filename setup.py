@@ -46,7 +46,7 @@ setup(
     #long_description=open('README.md').read(),  # Read the contents of README.md for long description
     long_description_content_type="text/markdown",  # Format of the long description (markdown)
     url="https://github.com/Ranuja01/cython-chess",  # Your GitHub repository URL
-    packages=["Cython_Chess"],  # List of Python packages included in the distribution
+    packages=["cython_chess"],  # List of Python packages included in the distribution
     ext_modules=cythonize(extensions),  # List of extension modules to build with Cython
     install_requires=[  # List of Python dependencies
         "numpy", 
