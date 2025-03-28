@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 @author: Ranuja Pinnaduwage
 
@@ -27,9 +26,9 @@ import numpy as np
 # Define the extension module
 extensions = [
     Extension(
-        "Cython_Chess",                     # Name of the compiled extension
-        sources=["cython_chess/cython_chess_backend.cpp", "cython_chess/cython_chess.pyx"],       # Source Cython file
-        language="c++",                   # Use C++ compiler
+        "Cython_Chess", # Name of the compiled extension
+        sources=["cython_chess/cython_chess_backend.cpp", "cython_chess/cython_chess.pyx"], # Source Cython file
+        language="c++", # Use C++ compiler
         extra_compile_args=["-Ofast", "-march=native", "-ffast-math", 
         "-funroll-loops", "-flto", "-fomit-frame-pointer", "-std=c++20"], # Optimization flags
         define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")], 
@@ -38,21 +37,20 @@ extensions = [
 ]
 
 setup(
-    name="cython-chess",  # Name of your package
-    version="0.1",  # Version of your package
-    author="Ranuja Pinnaduwage",  # Your name or organization
-    author_email="Ranuja.Pinnaduwage@gmail.com",  # Your email address
-    description="A Cython-based chess library that optimizes the python-chess library",  # Short description
+    name="cython-chess",  # Name of the package
+    version="0.1",  # Version of the package
+    author="Ranuja Pinnaduwage",
+    author_email="Ranuja.Pinnaduwage@gmail.com", 
+    description="A Cython-based chess library that optimizes the python-chess library",
     #long_description=open('README.md').read(),  # Read the contents of README.md for long description
     long_description_content_type="text/markdown",  # Format of the long description (markdown)
-    url="https://github.com/Ranuja01/cython-chess",  # Your GitHub repository URL
+    url="https://github.com/Ranuja01/cython-chess", 
     packages=["cython_chess"],  # List of Python packages included in the distribution
     ext_modules=cythonize(extensions),  # List of extension modules to build with Cython
     install_requires=[  # List of Python dependencies 
         "python-chess",
         "cython",
         "setuptools",
-        # Add any other dependencies your package needs
     ],
     classifiers=[  # Classifiers help categorize your package
         "Programming Language :: Python :: 3",
@@ -62,7 +60,7 @@ setup(
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
     ],
-    python_requires=">=3.8",  # Specify the minimum Python version required
+    python_requires=">=3.8",  # Minimum Python version required
     include_package_data=True,  # Ensure non-Python files (like README.md) are included
     zip_safe=False,  # Indicate if the package can be reliably used as a .egg file
 )

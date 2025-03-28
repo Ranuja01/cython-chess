@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 @author: Ranuja Pinnaduwage
 
@@ -39,23 +38,20 @@ cdef extern from "stdint.h":
 # Import functions from the c++ file
 cdef extern from "cython_chess_backend.h":
     
-    void initialize_attack_tables()
-    uint8_t num_pieces(uint64_t bb)
-    void scan_reversed(uint64_t bb, vector[uint8_t] &result)
-    void scan_forward(uint64_t bb, vector[uint8_t] &result)
-    uint64_t attacks_mask(bint colour, uint64_t occupied, uint8_t square, uint8_t pieceType)
+    void initialize_attack_tables()    
+    
+    void generate_piece_moves(vector[uint8_t] &startPos, vector[uint8_t] &endPos, uint64_t our_pieces, uint64_t pawnsMask, uint64_t knightsMask, uint64_t bishopsMask, uint64_t rooksMask, uint64_t queensMask, uint64_t kingsMask, uint64_t occupied_whiteMask, uint64_t occupied_blackMask, uint64_t occupiedMask, uint64_t from_mask, uint64_t to_mask)
+    void generate_pawn_moves(vector[uint8_t] &startPos, vector[uint8_t] &endPos, vector[uint8_t] &promotions, uint64_t opposingPieces, uint64_t occupied, bint colour, uint64_t pawnsMask, uint64_t from_mask, uint64_t to_mask)
     uint64_t attackers_mask(bint colour, uint8_t square, uint64_t occupied, uint64_t queens_and_rooks, uint64_t queens_and_bishops, uint64_t kings, uint64_t knights, uint64_t pawns, uint64_t occupied_co)
     uint64_t slider_blockers(uint8_t king, uint64_t queens_and_rooks, uint64_t queens_and_bishops, uint64_t occupied_co_opp, uint64_t occupied_co, uint64_t occupied)
     uint64_t betweenPieces(uint8_t a, uint8_t b)
     uint64_t ray(uint8_t a, uint8_t b)
+
+    uint8_t num_pieces(uint64_t bb)
+    void scan_reversed(uint64_t bb, vector[uint8_t] &result)
+    void scan_forward(uint64_t bb, vector[uint8_t] &result)
+    uint64_t attacks_mask(bint colour, uint64_t occupied, uint8_t square, uint8_t pieceType)
     
-    void generate_piece_moves(vector[uint8_t] &startPos, vector[uint8_t] &endPos, uint64_t our_pieces, uint64_t pawnsMask, uint64_t knightsMask, uint64_t bishopsMask, uint64_t rooksMask, uint64_t queensMask, uint64_t kingsMask, uint64_t occupied_whiteMask, uint64_t occupied_blackMask, uint64_t occupiedMask, uint64_t from_mask, uint64_t to_mask)
-    void generate_pawn_moves(vector[uint8_t] &startPos, vector[uint8_t] &endPos, vector[uint8_t] &promotions, uint64_t opposingPieces, uint64_t occupied, bint colour, uint64_t pawnsMask, uint64_t from_mask, uint64_t to_mask)
-
-
-def board():
-    initialize_attack_tables()    
-    return chess.Board()
 
 cpdef initialize():
     initialize_attack_tables()    
@@ -264,3 +260,6 @@ def generate_pseudo_legal_moves(object board, uint64_t from_mask, uint64_t to_ma
     # Call the c++ function to generate en passant captures.
     if board.ep_square:
         yield from board.generate_pseudo_legal_ep(from_mask, to_mask)
+
+# Initialize module upon import
+initialize()
