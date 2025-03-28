@@ -305,7 +305,7 @@ uint8_t piece_type_at(uint8_t square){
 /*
 	Set of functions used to generate moves
 */
-void generatePieceMoves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &endPos, uint64_t our_pieces, uint64_t pawnsMask, uint64_t knightsMask, uint64_t bishopsMask, uint64_t rooksMask, uint64_t queensMask, uint64_t kingsMask, uint64_t occupied_whiteMask, uint64_t occupied_blackMask, uint64_t occupiedMask, uint64_t from_mask, uint64_t to_mask){
+void generate_piece_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &endPos, uint64_t our_pieces, uint64_t pawnsMask, uint64_t knightsMask, uint64_t bishopsMask, uint64_t rooksMask, uint64_t queensMask, uint64_t kingsMask, uint64_t occupied_whiteMask, uint64_t occupied_blackMask, uint64_t occupiedMask, uint64_t from_mask, uint64_t to_mask){
     
 	/*
 		Function to generate moves for non-pawn pieces
@@ -367,7 +367,7 @@ void generatePieceMoves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &en
 	}
 }
 
-void generatePawnMoves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &endPos, std::vector<uint8_t> &promotions, uint64_t opposingPieces, uint64_t occupied, bool colour, uint64_t pawnsMask, uint64_t from_mask, uint64_t to_mask){    			
+void generate_pawn_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &endPos, std::vector<uint8_t> &promotions, uint64_t opposingPieces, uint64_t occupied, bool colour, uint64_t pawnsMask, uint64_t from_mask, uint64_t to_mask){    			
 	
 	/*
 		Function to generate moves for pawn pieces
@@ -502,7 +502,7 @@ void generatePawnMoves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &end
 	
 }
 
-uint64_t attackersMask(bool colour, uint8_t square, uint64_t occupied, uint64_t queens_and_rooks, uint64_t queens_and_bishops, uint64_t kings, uint64_t knights, uint64_t pawns, uint64_t occupied_co){
+uint64_t attackers_mask(bool colour, uint8_t square, uint64_t occupied, uint64_t queens_and_rooks, uint64_t queens_and_bishops, uint64_t kings, uint64_t knights, uint64_t pawns, uint64_t occupied_co){
     
 	/*
 		Function to generate a mask containing attacks from the given square
@@ -626,48 +626,6 @@ void scan_reversed(uint64_t bb, std::vector<uint8_t> &result){
         result.push_back(r);
         bb ^= (1ULL << r);		
     }    
-}
-
-bool is_capture(uint8_t from_square, uint8_t to_square, uint64_t occupied_co, bool is_en_passant){
-    	
-	/*
-		Function to determine if a move is a capture
-		
-		Parameters:
-		- from_square: The starting square
-		- to_square: The ending square
-		- occupied_co: A mask containing occupied pieces of the opposing side
-		- is_en_passant: A boolean determining whether the move is an en passent
-		
-		Returns:
-		A mask containing the squares between a and b
-	*/
-	
-	uint64_t touched = (1ULL << from_square) ^ (1ULL << to_square);
-	return bool(touched & occupied_co) || is_en_passant;
-}
-
-bool is_check(bool colour, uint64_t occupied, uint64_t queens_and_rooks, uint64_t queens_and_bishops, uint64_t kings, uint64_t knights, uint64_t pawns, uint64_t opposingPieces){
-		
-	/*
-		Function to determine if a move is a check
-		
-		Parameters:
-		- colour: The colour of the current side
-		- occupied: The mask containing all pieces
-		- queens_and_rooks: The mask containing queens and rooks
-		- queens_and_bishops: The mask containing queens and bishops
-		- kings: The mask containing only kings
-		- knights: The mask containing only knights
-		- pawns: The mask containing only pawns
-		- opposingPieces: The mask containing the pieces of the opposing side
-		
-		Returns:
-		A boolean defining whether the move is a check
-	*/
-	
-    uint8_t kingSquare = 63 - __builtin_clzll(~opposingPieces&kings);
-	return (bool)(attackersMask(!colour, kingSquare, occupied, queens_and_rooks, queens_and_bishops, kings, knights, pawns, opposingPieces));
 }
 
 void scan_forward(uint64_t bb, std::vector<uint8_t> &result) {

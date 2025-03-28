@@ -48,8 +48,7 @@ setup(
     url="https://github.com/Ranuja01/cython-chess",  # Your GitHub repository URL
     packages=["cython_chess"],  # List of Python packages included in the distribution
     ext_modules=cythonize(extensions),  # List of extension modules to build with Cython
-    install_requires=[  # List of Python dependencies
-        "numpy", 
+    install_requires=[  # List of Python dependencies 
         "python-chess",
         "cython",
         "setuptools",

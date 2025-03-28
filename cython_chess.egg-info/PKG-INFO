@@ -1,0 +1,19 @@
+Metadata-Version: 2.1
+Name: cython-chess
+Version: 0.1
+Summary: A Cython-based chess library that optimizes the python-chess library
+Home-page: https://github.com/Ranuja01/cython-chess
+Author: Ranuja Pinnaduwage
+Author-email: Ranuja.Pinnaduwage@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: C++
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: python-chess
+Requires-Dist: cython
+Requires-Dist: setuptools

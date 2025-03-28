@@ -1,0 +1,12 @@
+LICENSE
+setup.py
+cython_chess/__init__.py
+cython_chess/cython_chess.cpp
+cython_chess/cython_chess_backend.cpp
+cython_chess/cython_chess_backend.h
+cython_chess.egg-info/PKG-INFO
+cython_chess.egg-info/SOURCES.txt
+cython_chess.egg-info/dependency_links.txt
+cython_chess.egg-info/not-zip-safe
+cython_chess.egg-info/requires.txt
+cython_chess.egg-info/top_level.txt
