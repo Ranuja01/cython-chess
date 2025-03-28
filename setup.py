@@ -51,7 +51,6 @@ setup(
     install_requires=[  # List of Python dependencies
         "numpy", 
         "python-chess",
-        "collections.abc",
         "cython",
         "setuptools",
         # Add any other dependencies your package needs
