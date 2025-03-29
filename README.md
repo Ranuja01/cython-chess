@@ -61,15 +61,15 @@ instructions to download one.
   ```
 
 ### **Example Usage:**
-To use the module, simply import Cython_Chess as seen below:
+To use the module, simply import cython-chess as seen below:
 ```python
-import Cython_Chess
+import cython_chess
 ```
 The module will self initialize, allowing you to use it automatically.
 
 Since this module currently only improves the move generation speed, it still relies on the board objects from the original `python-chess`
 library. The following example demonstrates how to use the `python-chess` board object for move generation while utilizing the optimized
-Cython_Chess library to speed up the process. The start and end squares for move generation are defined using bitmasks from the original
+cython-chess library to speed up the process. The start and end squares for move generation are defined using bitmasks from the original
 `python-chess` library:
 ```python
 import Cython_Chess
@@ -83,7 +83,7 @@ The following code can be found in the example usage file. Run this script to te
 *Note:* You may need to pip install timeit if not already done so for this
 ```python
 from timeit import default_timer as timer
-import Cython_Chess as cython_chess
+import cython_chess
 import chess
 
 board = chess.Board()
