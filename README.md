@@ -72,11 +72,11 @@ library. The following example demonstrates how to use the `python-chess` board 
 cython-chess library to speed up the process. The start and end squares for move generation are defined using bitmasks from the original
 `python-chess` library:
 ```python
-import Cython_Chess
+import cython_chess
 import chess
 
 board = chess.Board()
-Cython_Chess.generate_legal_moves(board,chess.BB_ALL,chess.BB_ALL)
+cython_chess.generate_legal_moves(board,chess.BB_ALL,chess.BB_ALL)
 ```
 
 The following code can be found in the example usage file. Run this script to test the speed improvements.
