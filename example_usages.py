@@ -5,7 +5,7 @@ Created on Fri Mar 28 12:59:11 2025
 @author: Kumodth
 """
 from timeit import default_timer as timer
-import Cython_Chess as cython_chess
+import cython_chess
 import chess
 
 board = chess.Board()

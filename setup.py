@@ -26,8 +26,8 @@ import numpy as np
 # Define the extension module
 extensions = [
     Extension(
-        "Cython_Chess", # Name of the compiled extension
-        sources=["cython_chess/cython_chess_backend.cpp", "cython_chess/cython_chess.pyx"], # Source Cython file
+        "cython_chess", # Name of the compiled extension
+        sources=["src/cython_chess_backend.cpp", "src/cython_chess.pyx"], # Source Cython file
         language="c++", # Use C++ compiler
         extra_compile_args=["-Ofast", "-march=native", "-ffast-math", 
         "-funroll-loops", "-flto", "-fomit-frame-pointer", "-std=c++20"], # Optimization flags
@@ -42,10 +42,10 @@ setup(
     author="Ranuja Pinnaduwage",
     author_email="Ranuja.Pinnaduwage@gmail.com", 
     description="A Cython-based chess library that optimizes the python-chess library",
-    #long_description=open('README.md').read(),  # Read the contents of README.md for long description
+    long_description=open('README.md').read(),  # Read the contents of README.md for long description
     long_description_content_type="text/markdown",  # Format of the long description (markdown)
     url="https://github.com/Ranuja01/cython-chess", 
-    packages=["cython_chess"],  # List of Python packages included in the distribution
+    packages=["src"],  # List of Python packages included in the distribution
     ext_modules=cythonize(extensions),  # List of extension modules to build with Cython
     install_requires=[  # List of Python dependencies 
         "python-chess",
