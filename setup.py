@@ -53,7 +53,7 @@ setup(
         "python-chess",
         "cython",
         "setuptools",
-        "wheels",
+        "wheel",
     ],
     classifiers=[  # Classifiers help categorize your package
         "Programming Language :: Python :: 3",
