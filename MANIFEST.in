@@ -1,0 +1,3 @@
+include README.md
+include src/*.pyx
+include src/*.cpp

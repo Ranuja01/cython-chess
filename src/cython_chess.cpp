@@ -23,7 +23,7 @@
         ],
         "include_dirs": [
             "src",
-            "/home/ranuja/anaconda3/lib/python3.10/site-packages/numpy/_core/include"
+            "/tmp/build-env-0xgzgvzm/lib/python3.11/site-packages/numpy/_core/include"
         ],
         "language": "c++",
         "name": "cython_chess",
