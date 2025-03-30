@@ -27,14 +27,29 @@ import os
 
 os.environ['CXXFLAGS'] = '/std:c++17'
 
+import sys
+
+# Check if using MSVC
+is_msvc = sys.platform == "win32"
+
+if is_msvc:
+    extra_compile_args = [
+        "/O2", "/GL", "/fp:fast", "/arch:AVX2", "/favor:INTEL64",
+        "/std:c++20", "/Ot", "/Oi", "/GT", "/GF", "/Gy"
+    ]
+else:
+    extra_compile_args = [
+        "-Ofast", "-march=native", "-ffast-math",
+        "-funroll-loops", "-flto", "-fomit-frame-pointer",
+        "-std=c++20"
+    ]
 # Define the extension module
 extensions = [
     Extension(
         "cython_chess", # Name of the compiled extension
         sources=["src/cython_chess_backend.cpp", "src/cython_chess.pyx"], # Source Cython file
         language="c++", # Use C++ compiler
-        extra_compile_args=["-Ofast", "-march=native", "-ffast-math", 
-        "-funroll-loops", "-flto", "-fomit-frame-pointer", "-std=c++20"], # Optimization flags
+        extra_compile_args=extra_compile_args, # Optimization flags
         define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")], 
         include_dirs=[np.get_include()],   
     )
