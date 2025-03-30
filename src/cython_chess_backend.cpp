@@ -36,6 +36,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #include <deque>
 #include <string>
 #include <cstring>
+#include <immintrin.h> // For MSVC intrinsics
 
 constexpr int NUM_SQUARES = 64;
 
@@ -98,6 +99,17 @@ uint64_t pawns, knights, bishops, rooks, queens, kings, occupied_white, occupied
 /*
 	Set of functions to initialize masks for move generation
 */
+
+unsigned long count_leading_zeros_(uint64_t value) {
+    #if defined(_MSC_VER)
+        return _lzcnt_u64(value); // MSVC intrinsic
+    #elif defined(__GNUC__) || defined(__clang__)
+        return __builtin_clzll(value); // GCC/Clang built-in
+    #else
+        #error "Unsupported compiler"
+    #endif
+}
+
 void initialize_attack_tables() {
 	
 	/*
@@ -355,7 +367,7 @@ void generate_piece_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &
 		uint8_t r_inner = 0;
 		uint64_t bb_inner = moves;
 		while (bb_inner) {
-			r_inner = 64 - __builtin_clzll(bb_inner) - 1;
+			r_inner = 64 - count_leading_zeros_(bb_inner) - 1;
 			
 			// Push the starting and ending positions to their respective vectors
 			startPos.push_back(r);

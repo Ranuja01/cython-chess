@@ -52,6 +52,7 @@ uint64_t ray(uint8_t a, uint8_t b);
 /*
 	Set of functions used as utilities for all above functions
 */
+signed long count_leading_zeros(uint64_t value);
 uint8_t num_pieces(uint64_t bb);
 void scan_reversed(uint64_t bb, std::vector<uint8_t> &result);
 std::vector<uint8_t> scan_reversedOld(uint64_t bb);
