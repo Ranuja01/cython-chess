@@ -22,20 +22,31 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 from setuptools import setup, Extension
 from Cython.Build import cythonize
 import numpy as np
+import sys
 
-import os
+# Determine the platform and set compiler flags accordingly
+if sys.platform == "win32":
+    # MSVC-specific flags
+    extra_compile_args = ["/O2", "/std:c++20", "/arch:AVX", "/fp:fast"]
+    extra_link_args = []
+else:
+    # GCC/Clang-specific flags
+    extra_compile_args = [
+        "-Ofast", "-march=native", "-ffast-math",
+        "-funroll-loops", "-flto", "-fomit-frame-pointer", "-std=c++20"
+    ]
+    extra_link_args = ["-flto"]
 
-
-# Define the extension module
+# Define the extension
 extensions = [
     Extension(
-        "cython_chess", # Name of the compiled extension
-        sources=["src/cython_chess_backend.cpp", "src/cython_chess.pyx"], # Source Cython file
-        language="c++", # Use C++ compiler
-        extra_compile_args=["-Ofast", "-march=native", "-ffast-math", 
-        "-funroll-loops", "-flto", "-fomit-frame-pointer", "-std=c++20"], # Optimization flags
-        define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")], 
-        include_dirs=[np.get_include()],   
+        "cython_chess",  # Name of the compiled extension
+        sources=["src/cython_chess_backend.cpp", "src/cython_chess.pyx"],  # Source files
+        language="c++",  # Use C++ compiler
+        extra_compile_args=extra_compile_args,  # Platform-specific compile flags
+        extra_link_args=extra_link_args,  # Platform-specific link flags
+        define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],  # Macros
+        include_dirs=[np.get_include()],  # Include directories
     )
 ]
 
