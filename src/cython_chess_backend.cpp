@@ -667,7 +667,15 @@ uint8_t num_pieces(uint64_t bb) {
 		- bb: The bitmask to be examined
 	*/
 	
-    return __builtin_popcountll(bb);
+	#if defined(_MSC_VER)
+        // Use MSVC intrinsic for population count
+        return static_cast<uint8_t>(__popcnt64(bb));
+    #elif defined(__GNUC__) || defined(__clang__)
+        // Use GCC/Clang built-in for population count
+        return static_cast<uint8_t>(__builtin_popcountll(bb));
+    #else
+        #error "Unsupported compiler"
+    #endif
 }
 
 uint8_t square_distance(uint8_t sq1, uint8_t sq2) {
