@@ -30,7 +30,7 @@ os.environ['CXXFLAGS'] = '/std:c++17'
 import sys
 
 # Check if using MSVC
-is_msvc = sys.platform == "win32"
+is_msvc = is_msvc = sys.platform == "win32" and not "MINGW" in sys.version
 
 if is_msvc:
     extra_compile_args = [
