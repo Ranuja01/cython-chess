@@ -60,6 +60,18 @@ instructions to download one.
   g++ --version 
   ```
 
+## Download
+To download this package, use the following instructions:
+- For Linux:
+  ```sh
+  pip install cython-chess
+  ```
+- for Windows (Not yet published on PYPI):
+  ```sh
+  pip install git+https://github.com/Ranuja01/cython-chess.git
+  ```
+
+
 ### **Example Usage:**
 To use the module, simply import cython-chess as seen below:
 ```python
