@@ -25,7 +25,9 @@ import numpy as np
 
 import os
 
-os.environ['CXXFLAGS'] = '/std:c++17'
+os.environ['CC'] = 'gcc'
+os.environ['CXX'] = 'g++'
+os.environ['CXXFLAGS'] = '-std:c++17'
 
 # Define the extension module
 extensions = [
