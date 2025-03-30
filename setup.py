@@ -63,7 +63,7 @@ setup(
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
     ],
-    python_requires=">=3.8,<=3.13",  # Minimum Python version required
+    python_requires=">=3.8,<=3.13.1",  # Minimum Python version required
     include_package_data=True,  # Ensure non-Python files (like README.md) are included
     zip_safe=False,  # Indicate if the package can be reliably used as a .egg file
 )
