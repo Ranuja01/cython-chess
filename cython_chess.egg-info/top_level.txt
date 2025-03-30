@@ -1,2 +1,2 @@
-Cython_Chess
 cython_chess
+src

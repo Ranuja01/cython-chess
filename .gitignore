@@ -1,4 +1,6 @@
 /build
+cython_chess.egg-info/
+dist/
 *.so
 /cython_chess/cython_chess.cpp
 untitled2.py

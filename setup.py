@@ -20,6 +20,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 from setuptools import setup, Extension
+import sys
+import subprocess
 from Cython.Build import cythonize
 import numpy as np
 
@@ -60,7 +62,7 @@ setup(
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
     ],
-    python_requires=">=3.8",  # Minimum Python version required
+    python_requires=">=3.8,<=3.12",  # Minimum Python version required
     include_package_data=True,  # Ensure non-Python files (like README.md) are included
     zip_safe=False,  # Indicate if the package can be reliably used as a .egg file
 )
