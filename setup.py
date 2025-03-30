@@ -20,10 +20,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 from setuptools import setup, Extension
-import sys
-import subprocess
 from Cython.Build import cythonize
 import numpy as np
+
+import os
+
+os.environ['CXXFLAGS'] = '/std:c++17'
 
 # Define the extension module
 extensions = [
