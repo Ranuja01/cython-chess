@@ -100,7 +100,7 @@ uint64_t pawns, knights, bishops, rooks, queens, kings, occupied_white, occupied
 	Set of functions to initialize masks for move generation
 */
 
-unsigned long count_leading_zeros_(uint64_t value) {
+uint8_t count_leading_zeros_(uint64_t value) {
     #if defined(_MSC_VER)
         return _lzcnt_u64(value); // MSVC intrinsic
     #elif defined(__GNUC__) || defined(__clang__)
@@ -358,7 +358,7 @@ void generate_piece_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &
 	uint8_t r = 0;
 	uint64_t bb = non_pawns;
 	while (bb) {
-		r = 64 - __builtin_clzll(bb) - 1;
+		r = 64 - count_leading_zeros_(bb) - 1;
 		
 		// Define the moves as a bitwise and between the squares attacked from the starting square and the starting mask
 		uint64_t moves = (attacks_mask(bool((1ULL<<r) & occupied_white),occupied,r,piece_type_at (r)) & ~our_pieces) & to_mask;		
@@ -403,7 +403,7 @@ void generate_pawn_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &e
 	uint8_t r = 0;
 	uint64_t bb = pawnsMask;
 	while (bb) {
-		r = 64 - __builtin_clzll(bb) - 1;
+		r = 64 - count_leading_zeros_(bb) - 1;
 		
 		// Acquire the destinations that follow pawn attacks and opposing pieces
 		uint64_t moves = BB_PAWN_ATTACKS[colour][r] & opposingPieces & to_mask;
@@ -412,7 +412,7 @@ void generate_pawn_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &e
 		uint8_t r_inner = 0;
 		uint64_t bb_inner = moves;
 		while (bb_inner) {
-			r_inner = 64 - __builtin_clzll(bb_inner) - 1;
+			r_inner = 64 - count_leading_zeros_(bb_inner) - 1;
 			
 			// Check if the rank suggests the move is a promotion
 			uint8_t rank = r_inner / 8;			
@@ -459,7 +459,7 @@ void generate_pawn_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &e
 	r = 0;
 	bb = single_moves;
 	while (bb) {
-		r = 64 - __builtin_clzll(bb) - 1;
+		r = 64 - count_leading_zeros_(bb) - 1;
 		
 		// Set the destination square as either one square up or down the board depending on the colour
 		uint8_t from_square = r;
@@ -495,7 +495,7 @@ void generate_pawn_moves(std::vector<uint8_t> &startPos, std::vector<uint8_t> &e
 	r = 0;
 	bb = double_moves;
 	while (bb) {
-		r = 64 - __builtin_clzll(bb) - 1;
+		r = 64 - count_leading_zeros_(bb) - 1;
 		
 		// Set the destination square as either two squares up or down the board depending on the colour
 		uint8_t from_square = r;
@@ -582,11 +582,11 @@ uint64_t slider_blockers(uint8_t king, uint64_t queens_and_rooks, uint64_t queen
 	uint8_t r = 0;
 	uint64_t bb = snipers & occupied_co_opp;
 	while (bb) {
-		r = 64 - __builtin_clzll(bb) - 1;
+		r = 64 - count_leading_zeros_(bb) - 1;
 		
 		// Update the blockers where there is exactly one blocker per attack 
 		uint64_t b = betweenPieces(king, r) & occupied;        
-        if (b && (1ULL << (63 - __builtin_clzll(b)) == b)){
+        if (b && (1ULL << (63 - count_leading_zeros_(b)) == b)){
             blockers |= b;
 		}
 		bb ^= (1ULL << r);
@@ -634,7 +634,7 @@ void scan_reversed(uint64_t bb, std::vector<uint8_t> &result){
 	
 	uint8_t r = 0;
     while (bb) {
-        r = 64 - __builtin_clzll(bb) - 1;
+        r = 64 - count_leading_zeros_(bb) - 1;
         result.push_back(r);
         bb ^= (1ULL << r);		
     }    
@@ -653,7 +653,7 @@ void scan_forward(uint64_t bb, std::vector<uint8_t> &result) {
 	uint64_t r = 0;
     while (bb) {
         r = bb &-bb;
-        result.push_back(64 - __builtin_clzll(r) - 1);
+        result.push_back(64 - count_leading_zeros_(r) - 1);
         bb ^= r;
     }
 }
