@@ -7,7 +7,7 @@ Cython is a programming language that serves as a bridge between Python and C/C+
 write Python-like code that can be compiled into highly efficient C/C++ code. This makes it an ideal
 tool when you want to optimize the performance of certain Python programs while still leveraging the
 simplicity of Python. Cython also allows you to invoke custom C++ code to further boost speed by bypassing
-python alltogether. In this project, I rewrote functions pertaining to move generation from the
+Python alltogether. In this project, I rewrote functions pertaining to move generation from the
 `python-chess` using Cython and C++. I use Cython to interact with Python objects from `python-chess` such as
 chess.Board or chess.Move objects but try to seperate code that involves bitmask parsing and other such
 operations into a C++ file for even more speed.
@@ -15,15 +15,15 @@ operations into a C++ file for even more speed.
 I may in the future look to optimize other portions of the `python-chess` library but as it stands,
 the overhead of calling Cython functions for small functions such as is_capture seem to be more costly
 than simply calling the same functions from `python-chess`. Move generation however is somewhat lengthy and therefore
-the Cythonized code (as well as the C++ injections) can give around a 40% improvement in move generation.
+the Cythonized code (as well as the C++ injections) can give around a **40% improvement** in move generation.
 
-*Note:* This project includes C++ components and therefore requires the ability to compile C++ as well as python.
-When pip installing the package, the required python components come with it but you need to ensure you
+*Note:* This project includes C++ components and therefore requires the ability to compile C++ as well as Python.
+When pip installing the package, the required Python components come with it but you need to ensure you
 have the ability to compile the C++ files. To do this ensure you follow the build requirements below.
 
 ## Build Requirements
 Ensure you have Python 3.8 or greater installed on your system along with an udpated version of pip.
-When installing this package, all required python dependencies will be installed alongside it.
+When installing this package, all required Python dependencies will be installed alongside it.
 To ensure full functionality, confirm that you have a C++ compiler installed. If not, use the following
 instructions to download one.
 
@@ -35,6 +35,8 @@ instructions to download one.
   ```sh
   cl
   ```
+- *Note* that simply installing MSVC build tools may not initialize your system properly. You may have to set environment
+  variables or update your path with the cl.exe compiler.
 ### Linux  
 - Install the necessary C++ compiler and build tools:
   - For Ubuntu: 
