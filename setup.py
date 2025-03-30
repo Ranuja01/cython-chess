@@ -52,7 +52,7 @@ extensions = [
 
 setup(
     name="cython-chess",  # Name of the package
-    version="0.2",  # Version of the package
+    version="0.3",  # Version of the package
     author="Ranuja Pinnaduwage",
     author_email="Ranuja.Pinnaduwage@gmail.com", 
     description="A Cython-based chess library that optimizes the python-chess library",
