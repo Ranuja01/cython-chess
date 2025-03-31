@@ -15,12 +15,13 @@
         "extra_compile_args": [
             "/O2",
             "/std:c++20",
-            "/arch:AVX",
+            "/arch:AVX2",
+            "/arch:BMI1",
             "/fp:fast"
         ],
         "include_dirs": [
             "src",
-            "C:\\Users\\Kumodth\\AppData\\Local\\Temp\\pip-build-env-2_62_eor\\overlay\\Lib\\site-packages\\numpy\\core\\include"
+            "C:\\Users\\Kumodth\\AppData\\Local\\Temp\\pip-build-env-ukji_z0h\\overlay\\Lib\\site-packages\\numpy\\core\\include"
         ],
         "language": "c++",
         "name": "cython_chess",

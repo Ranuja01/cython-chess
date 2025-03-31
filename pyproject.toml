@@ -2,7 +2,9 @@
 requires = ["setuptools", "wheel", "Cython", "numpy"]
 build-backend = "setuptools.build_meta"
 
-[tool.cibuildwheel]
+[tool.cibuildwheel.windows]
+# Set CFLAGS for Windows and platform-specific flags for cibuildwheel
+environment ="CFLAGS='/arch:AVX2'"
 
 # Disable building PyPy wheels on all platforms
 skip = "pp*"

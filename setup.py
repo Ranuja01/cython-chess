@@ -27,7 +27,7 @@ import sys
 # Determine the platform and set compiler flags accordingly
 if sys.platform == "win32":
     # MSVC-specific flags
-    extra_compile_args = ["/O2", "/std:c++20", "/arch:AVX", "/fp:fast"]
+    extra_compile_args = ["/O2", "/std:c++20", "/arch:AVX2", "/arch:BMI1", "/fp:fast"]
     extra_link_args = []
 else:
     # GCC/Clang-specific flags
