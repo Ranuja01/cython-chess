@@ -20,7 +20,7 @@
         ],
         "include_dirs": [
             "src",
-            "C:\\Users\\Kumodth\\AppData\\Local\\Temp\\build-env-7mw1q7i3\\Lib\\site-packages\\numpy\\_core\\include"
+            "C:\\Users\\Kumodth\\AppData\\Local\\Temp\\pip-build-env-2_62_eor\\overlay\\Lib\\site-packages\\numpy\\core\\include"
         ],
         "language": "c++",
         "name": "cython_chess",

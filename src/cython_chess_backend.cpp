@@ -102,7 +102,17 @@ uint64_t pawns, knights, bishops, rooks, queens, kings, occupied_white, occupied
 
 uint8_t count_leading_zeros_(uint64_t value) {
     #if defined(_MSC_VER)
-        return _lzcnt_u64(value); // MSVC intrinsic
+        #if defined(__AVX__) || defined(__AVX2__)
+            return _lzcnt_u64(value); // MSVC intrinsic
+        #else
+            // Fallback implementation for MSVC if AVX/AVX2 is not available
+            uint8_t count = 0;
+            while (value) {
+                value >>= 1;
+                count++;
+            }
+            return 64 - count;
+        #endif
     #elif defined(__GNUC__) || defined(__clang__)
         return __builtin_clzll(value); // GCC/Clang built-in
     #else
@@ -659,17 +669,25 @@ void scan_forward(uint64_t bb, std::vector<uint8_t> &result) {
 }
 
 uint8_t num_pieces(uint64_t bb) {
-		
-	/*
-		Function to acquires the number of set bits in a bitmask
-		
-		Parameters:
-		- bb: The bitmask to be examined
-	*/
-	
-	#if defined(_MSC_VER)
-        // Use MSVC intrinsic for population count
-        return static_cast<uint8_t>(__popcnt64(bb));
+    /*
+        Function to acquire the number of set bits in a bitmask
+
+        Parameters:
+        - bb: The bitmask to be examined
+    */
+    #if defined(_MSC_VER)
+        #if defined(__AVX__) || defined(__AVX2__)
+            // Use MSVC intrinsic for population count
+            return static_cast<uint8_t>(__popcnt64(bb));
+        #else
+            // Fallback implementation for MSVC if AVX/AVX2 is not available
+            uint8_t count = 0;
+            while (bb) {
+                bb &= (bb - 1);
+                count++;
+            }
+            return count;
+        #endif
     #elif defined(__GNUC__) || defined(__clang__)
         // Use GCC/Clang built-in for population count
         return static_cast<uint8_t>(__builtin_popcountll(bb));
