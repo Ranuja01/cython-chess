@@ -64,15 +64,13 @@ instructions to download one.
 
 ## Download
 To download this package, use the following instructions:
-- For Linux:
   ```sh
   pip install cython-chess
   ```
-- for Windows (Not yet published on PYPI):
+If this does not work, then simply:
   ```sh
   pip install git+https://github.com/Ranuja01/cython-chess.git
   ```
-
 
 ### **Example Usage:**
 To use the module, simply import cython-chess as seen below:
