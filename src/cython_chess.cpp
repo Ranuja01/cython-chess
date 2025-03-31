@@ -10,20 +10,17 @@
             ]
         ],
         "depends": [
-            "src/cython_chess_backend.h"
+            "src\\cython_chess_backend.h"
         ],
         "extra_compile_args": [
-            "-Ofast",
-            "-march=native",
-            "-ffast-math",
-            "-funroll-loops",
-            "-flto",
-            "-fomit-frame-pointer",
-            "-std=c++20"
+            "/O2",
+            "/std:c++20",
+            "/arch:AVX",
+            "/fp:fast"
         ],
         "include_dirs": [
             "src",
-            "/tmp/build-env-0xgzgvzm/lib/python3.11/site-packages/numpy/_core/include"
+            "C:\\Users\\Kumodth\\AppData\\Local\\Temp\\build-env-7mw1q7i3\\Lib\\site-packages\\numpy\\_core\\include"
         ],
         "language": "c++",
         "name": "cython_chess",
@@ -1524,7 +1521,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "src/cython_chess.pyx",
+  "src\\\\cython_chess.pyx",
 };
 /* #### Code section: utility_code_proto_before_types ### */
 /* ForceInitThreads.proto */
@@ -2504,7 +2501,7 @@ static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_Iterator_chess_Move[] = "Iterator[chess.Move]";
 static const char __pyx_k_generate_legal_moves[] = "generate_legal_moves";
-static const char __pyx_k_src_cython_chess_pyx[] = "src/cython_chess.pyx";
+static const char __pyx_k_src_cython_chess_pyx[] = "src\\cython_chess.pyx";
 static const char __pyx_k_generate_castling_moves[] = "generate_castling_moves";
 static const char __pyx_k_generate_legal_captures[] = "generate_legal_captures";
 static const char __pyx_k_generate_pseudo_legal_ep[] = "generate_pseudo_legal_ep";
